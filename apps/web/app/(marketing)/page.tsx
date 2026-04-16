@@ -28,22 +28,22 @@ export default function LandingPage() {
         <div className="grid gap-8 sm:grid-cols-3">
           {/* Replace with app-specific steps */}
           <div className="text-center">
-            <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-4">
-              <span className="text-amber-500 font-bold">1</span>
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <span className="text-primary font-bold">1</span>
             </div>
             <h3 className="font-heading font-bold mb-2">Step One</h3>
             <p className="text-sm text-muted">Description of the first step.</p>
           </div>
           <div className="text-center">
-            <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-4">
-              <span className="text-amber-500 font-bold">2</span>
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <span className="text-primary font-bold">2</span>
             </div>
             <h3 className="font-heading font-bold mb-2">Step Two</h3>
             <p className="text-sm text-muted">Description of the second step.</p>
           </div>
           <div className="text-center">
-            <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-4">
-              <span className="text-amber-500 font-bold">3</span>
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <span className="text-primary font-bold">3</span>
             </div>
             <h3 className="font-heading font-bold mb-2">Step Three</h3>
             <p className="text-sm text-muted">Description of the third step.</p>

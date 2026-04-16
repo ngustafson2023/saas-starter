@@ -14,6 +14,25 @@ read -p "Landing page headline: " APP_HEADLINE
 read -p "Landing page subheadline: " APP_SUBHEADLINE
 read -p "Tagline (footer): " APP_TAGLINE
 read -p "Pro plan price (number only, e.g. '15'): " PRO_PRICE
+
+echo ""
+echo "=== Theme ==="
+echo "Presets: crimson=#dc2626, indigo=#6366f1, emerald=#059669, violet=#7c3aed, blue=#2563eb, orange=#ea580c"
+read -p "Primary color (hex, e.g. '#6366f1'): " PRIMARY_COLOR
+read -p "Primary foreground (hex, '#ffffff' for light text, '#18181b' for dark): " PRIMARY_FG
+echo ""
+echo "Font presets:"
+echo "  1) Clash Display + DM Sans (bold, modern)"
+echo "  2) Cal Sans + Inter (clean, professional)"
+echo "  3) Space Grotesk + Geist (technical, default)"
+read -p "Font preset (1/2/3): " FONT_PRESET
+
+case $FONT_PRESET in
+  1) FONT_HEADING="Clash Display"; FONT_BODY="DM Sans" ;;
+  2) FONT_HEADING="Cal Sans"; FONT_BODY="Inter" ;;
+  *) FONT_HEADING="Space Grotesk"; FONT_BODY="Geist" ;;
+esac
+
 APP_URL="https://${APP_NAME}.bootstrapquant.com"
 APP_DATE=$(date +%Y-%m-%d)
 
@@ -21,6 +40,7 @@ echo ""
 echo "App: ${APP_NAME}"
 echo "URL: ${APP_URL}"
 echo "Pro: \$${PRO_PRICE}/mo"
+echo "Theme: ${PRIMARY_COLOR} | ${FONT_HEADING} + ${FONT_BODY}"
 echo ""
 read -p "Proceed? (y/n) " -n 1 -r
 echo ""
@@ -38,7 +58,7 @@ find . -type f \
   -not -path '*/node_modules/*' \
   -not -path '*/.next/*' \
   -not -path './setup.sh' \
-  -name '*.ts' -o -name '*.tsx' -o -name '*.json' -o -name '*.toml' -o -name '*.css' -o -name '*.mjs' -o -name '*.sql' -o -name '*.example' | while read -r file; do
+  \( -name '*.ts' -o -name '*.tsx' -o -name '*.json' -o -name '*.toml' -o -name '*.css' -o -name '*.mjs' -o -name '*.sql' -o -name '*.example' \) | while read -r file; do
     sed -i \
       -e "s|__APP_NAME__|${APP_NAME}|g" \
       -e "s|__APP_TITLE__|${APP_TITLE}|g" \
@@ -49,6 +69,10 @@ find . -type f \
       -e "s|__APP_TAGLINE__|${APP_TAGLINE}|g" \
       -e "s|__PRO_PRICE__|${PRO_PRICE}|g" \
       -e "s|__DATE__|${APP_DATE}|g" \
+      -e "s|__PRIMARY_COLOR__|${PRIMARY_COLOR}|g" \
+      -e "s|__PRIMARY_FG__|${PRIMARY_FG}|g" \
+      -e "s|__FONT_HEADING__|${FONT_HEADING}|g" \
+      -e "s|__FONT_BODY__|${FONT_BODY}|g" \
       "$file"
 done
 
@@ -59,7 +83,8 @@ echo ""
 echo "=== Setup complete ==="
 echo ""
 echo "Next steps:"
-echo "  1. Add app-specific features, routes, and database tables"
-echo "  2. Run: npx supabase projects create ${APP_NAME} --org-id mwrcsnociaijodnsciyi --db-password \"\$(openssl rand -base64 24)\" --region us-east-1"
-echo "  3. Follow the deploy-saas skill for Supabase, Stripe, Vercel, and domain setup"
+echo "  1. Update font imports in app/layout.tsx for your chosen fonts"
+echo "  2. Add app-specific features, routes, and database tables"
+echo "  3. Run: npx supabase projects create ${APP_NAME} --org-id mwrcsnociaijodnsciyi --db-password \"\$(openssl rand -base64 24)\" --region us-east-1"
+echo "  4. Follow the deploy-saas skill for Supabase, Stripe, Vercel, and domain setup"
 echo ""
